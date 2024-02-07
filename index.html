@@ -15,9 +15,14 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
+  
+
   <body>
-    <!-- header design -->
-    <header class="header">
+    <div id="preloader"></div>
+
+    
+        <!-- header design -->
+    <header class="header" id="header">
       <a href="#" class="logo">U-Swan Studio</a>
       <i class='bx bx-menu' id="menu-icon"></i>
 
@@ -152,6 +157,7 @@
         <a href="#home"><i class='bx bxs-up-arrow-alt'></i></a>
       </div>
     </footer>
+  
 
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
@@ -179,6 +185,14 @@
   if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
   </script>
   <!-- End of Chaport Live Chat code -->
+    
+    <script>
+      var loader = document.getElementById("preloader");
+      window.addEventListener("load", function(){
+        loader.style.display = "none";
+        document.getElementById("header").style.display="flex"
+      })
+    </script>
 
   </body>
 </html>
