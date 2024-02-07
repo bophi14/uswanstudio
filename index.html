@@ -9,6 +9,8 @@
     <!-- box icons -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+
     <!-- custom css -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -21,10 +23,11 @@
 
       <nav class="navbar">
         <a href="#home" class="active">Home</a>
+        <a href="#portfolio">Portfolio</a>
         <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#portfolio">Portfolio</a>
         <a href="#contact">Contact</a>
+        <a href="https://wa.me/08871991081?text=Halo%2C%20saya%20ingin%20mendiskusikan%20sebuah%20project!" target="_blank" class="btnnav">PESAN VO</a>
       </nav>
     </header>
 
@@ -41,13 +44,41 @@
           <a href="https://www.youtube.com/@u-swanstudio2994" target="_blank"><i class='bx bxl-youtube' ></i></a>
           <a href="https://www.linkedin.com/in/yuswantina-marzuki-20508a219/" target="_blank"><i class='bx bxl-linkedin' ></i></a>
         </div>
-        <a href="https://wa.me/08871991081?text=Halo%2C%20saya%20ingin%20mendiskusikan%20sebuah%20project!" target="_blank" class="btn">Book VO NOW!</a>
+        <a href="https://wa.me/08871991081?text=Halo%2C%20saya%20ingin%20mendiskusikan%20sebuah%20project!" target="_blank" class="btn n">Book VO NOW!</a>
       </div>
 
       <div class="home-img">
         <img src="images/home.png" alt="">
       </div>
     </section>
+
+    <!-- portfolio section design -->
+    <section class="portfolio" id="portfolio">
+      <h2 class="heading">Some of my <span>Portfolio</span></h2>
+
+      <div class="container" id="player">
+        <div class="column add-bottom">
+            <div id="mainwrap">
+                <div id="nowPlay">
+                    <span id="npAction">Paused...</span><span id="npTitle"></span>
+                </div>
+                <div id="audiowrap">
+                    <div id="audio0">
+                        <audio id="audio1" preload controls>Your browser does not support HTML5 Audio! 😢</audio>
+                    </div>
+                    <div id="tracks">
+                        <a id="btnPrev">&larr;</a><a id="btnNext">&rarr;</a>
+                    </div>
+                </div>
+                <div id="plwrap">
+                    <ul id="plList"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+
     <!-- about section design -->
     <section class="about" id="about">
       <div class="about-img">
@@ -91,60 +122,7 @@
         </div>
       </div>
     </section>
-    <!-- portfolio section design -->
-    <section class="portfolio" id="portfolio">
-      <h2 class="heading">Some of my <span>Portfolio</span></h2>
-
-      <div class="portfolio-container">
-        <div class="portfolio-box">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/5UhqbWESpHg?si=Rm8q0Y-BqEou7aFt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          
-        </div>
-        <div class="portfolio-box">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/9tVRoS_pEt0?si=-QgcNECvlIXMYdL_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          
-        </div>
-        <div class="portfolio-box">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/TF0CC14NFsM?si=M6Py7DajhFdEhJoy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          
-        </div>
-        <div class="portfolio-box">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/Ac7tshLV2tA?si=iyZYjGafZe1As61p" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          
-        </div>
-
-        
-      </div>
-
-      <h2 class="heading client">My Previous <span>Clients</span></h2>
-
-      <div class="portfolio-container">
-        <div class="portfolio-box">
-          <img src="images/microsoft-seeklogo.com.svg" alt="">
-        </div>
-        <div class="portfolio-box">
-          <img src="images/Bank_Mandiri.svg" alt="">
-        </div>
-        <div class="portfolio-box">
-          <img src="images/Grab.svg" alt="">
-        </div>
-        <div class="portfolio-box">
-          <img src="images/Pertamina_Logo.svg" alt="">
-        </div>
-        <div class="portfolio-box">
-          <img src="images/qris.png" alt="">
-        </div>
-        <div class="portfolio-box">
-          <img src="images/telkom-indonesia-logo-38760059B6-seeklogo.com.png" alt="">
-        </div>
-        <div class="portfolio-box">
-          <img src="images/Bank_Central_Asia.svg.webp" alt="">
-        </div>
-        <div class="portfolio-box">
-          <img src="images/logo-bumn-tanpa-background-1-jasalogocepat-768x253.png" alt="">
-        </div>
-      </div>
-    </section>
+    
 
 
     <!-- contact section design -->
@@ -175,14 +153,22 @@
       </div>
     </footer>
 
+    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://api.html5media.info/1.1.8/html5media.min.js"></script>
+    
     <!-- scroll reveal -->
     <script src="https://unpkg.com/scrollreveal"></script>
 
     <!-- typed js -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
+    
+
     <!-- custom js -->
     <script src="js/script.js"></script>
+
+    
     
   </body>
 </html>
