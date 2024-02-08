@@ -489,6 +489,11 @@ span {
 }
 
 @media (max-width: 450px) {
+
+    #preloader {
+        background-size: 100%;
+    }
+    
     html {
         font-size: 50%;
     }
@@ -499,6 +504,11 @@ span {
 }
 
 @media (max-width: 365px) {
+
+    #preloader {
+        background-size: 100%;
+    }
+
     .home-img img {
         width: 90vw;
     }
