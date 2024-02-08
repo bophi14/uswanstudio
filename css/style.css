@@ -385,12 +385,22 @@ span {
 }
 
 @media (max-width: 1200px) {
+
+    #preloader {
+        background-size: 100%;
+    }
+    
     html {
         font-size: 55%;
     }
 }
 
 @media (max-width: 991px){
+
+    #preloader {
+        background-size: 100%;
+    }
+
     .header {
         padding: 2rem 3%;
     }
@@ -417,6 +427,11 @@ span {
 }
 
 @media (max-width: 768px) {
+
+    #preloader {
+        background-size: 100%;
+    }
+
     #menu-icon {
         display: block;
     }
@@ -483,6 +498,11 @@ span {
 }
 
 @media (max-width: 617px) {
+
+    #preloader {
+        background-size: 100%;
+    }
+
     .portfolio-container {
         grid-template-columns: 1fr;
     }
@@ -493,7 +513,7 @@ span {
     #preloader {
         background-size: 100%;
     }
-    
+
     html {
         font-size: 50%;
     }
