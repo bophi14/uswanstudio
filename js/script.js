@@ -100,32 +100,32 @@ jQuery(function ($) {
                 "track": 1,
                 "name": "Commercial Colgate Indonesia",
                 "duration": "0:08",
-                "file": "Colgate Commercial Indonesia"
+                "file": "Colgate"
             }, {
                 "track": 2,
                 "name": "E-Learning GBP Indonesia",
                 "duration": "0:20",
-                "file": "GBP E-Learning Indonesia"
+                "file": "GBP"
             }, {
                 "track": 3,
                 "name": "Commercial Google Indonesia",
                 "duration": "0:31",
-                "file": "Google Commercial Indonesia"
+                "file": "Google"
             }, {
                 "track": 4,
                 "name": "Narration Mastercard Indonesia",
                 "duration": "1:03",
-                "file": "Mastercard Narration Indonesia"
+                "file": "Mastercard"
             }, {
                 "track": 5,
                 "name": "Narration SUN Energy Indonesia",
                 "duration": "0:53",
-                "file": "SUN Energy Narration Indonesia"
+                "file": "SUN"
             }, {
                 "track": 6,
                 "name": "Commercial Youtube Indonesia",
                 "duration": "0:21",
-                "file": "Youtube Commercial Indonesia"
+                "file": "Youtube"
             }],
             buildPlaylist = $.each(tracks, function(key, value) {
                 var trackNumber = value.track,
