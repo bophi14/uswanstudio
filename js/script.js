@@ -7,7 +7,7 @@ menuIcon.onclick = () => {
     navbar.classList.toggle('active');
 };
 
-function whatsapp(){
+function whatsapp() {
     var name = document.getElementById('name').value;
     var message = document.getElementById('message').value;
     var email = document.getElementById('email').value;
@@ -28,7 +28,7 @@ window.onscroll = () => {
         let height = sec.offsetHeight;
         let id = sec.getAttribute('id');
 
-        if(top >= offset && top < offset + height){
+        if (top >= offset && top < offset + height) {
             navLinks.forEach(links => {
                 links.classList.remove('active');
                 document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
@@ -78,146 +78,201 @@ jQuery(function ($) {
     'use strict'
     var supportsAudio = !!document.createElement('audio').canPlayType;
     if (supportsAudio) {
-        // initialize plyr
-        var player = new Plyr('#audio1', {
-            controls: [
-                'restart',
-                'play',
-                'progress',
-                'current-time',
-                'duration',
-                'mute',
-                'volume',
-                'download'
-            ]
-        });
-        // initialize playlist and controls
-        var index = 0,
-            playing = false,
-            mediaPath = '/audios/',
-            extension = '',
-            tracks = [{
-                "track": 1,
-                "name": "Commercial Colgate Indonesia",
-                "duration": "0:08",
-                "file": "Colgate Commercial Indonesia"
-            }, {
-                "track": 2,
-                "name": "E-Learning GBP Indonesia",
-                "duration": "0:20",
-                "file": "GBP E-Learning Indonesia"
-            }, {
-                "track": 3,
-                "name": "Commercial Google Indonesia",
-                "duration": "0:31",
-                "file": "Google Commercial Indonesia"
-            }, {
-                "track": 4,
-                "name": "Narration Mastercard Indonesia",
-                "duration": "1:03",
-                "file": "Mastercard Narration Indonesia"
-            }, {
-                "track": 5,
-                "name": "Narration SUN Energy Indonesia",
-                "duration": "0:53",
-                "file": "SUN Energy Narration Indonesia"
-            }, {
-                "track": 6,
-                "name": "Commercial Youtube Indonesia",
-                "duration": "0:21",
-                "file": "Youtube Commercial Indonesia"
-            }],
-            buildPlaylist = $.each(tracks, function(key, value) {
-                var trackNumber = value.track,
-                    trackName = value.name,
-                    trackDuration = value.duration;
-                if (trackNumber.toString().length === 1) {
-                    trackNumber = '0' + trackNumber;
-                }
-                $('#plList').append('<li> \
-                    <div class="plItem"> \
-                        <span class="plNum">' + trackNumber + '.</span> \
-                        <span class="plTitle">' + trackName + '</span> \
-                        <span class="plLength">' + trackDuration + '</span> \
-                    </div> \
-                </li>');
-            }),
-            trackCount = tracks.length,
-            npAction = $('#npAction'),
-            npTitle = $('#npTitle'),
-            audio = $('#audio1').on('play', function () {
-                playing = true;
-                npAction.text('Now Playing...');
-            }).on('pause', function () {
-                playing = false;
-                npAction.text('Paused...');
-            }).on('ended', function () {
-                npAction.text('Paused...');
-                if ((index + 1) < trackCount) {
-                    index++;
-                    loadTrack(index);
-                    audio.play();
-                } else {
-                    audio.pause();
-                    index = 0;
-                    loadTrack(index);
-                }
-            }).get(0),
-            btnPrev = $('#btnPrev').on('click', function () {
-                if ((index - 1) > -1) {
-                    index--;
-                    loadTrack(index);
-                    if (playing) {
-                        audio.play();
-                    }
-                } else {
-                    audio.pause();
-                    index = 0;
-                    loadTrack(index);
-                }
-            }),
-            btnNext = $('#btnNext').on('click', function () {
-                if ((index + 1) < trackCount) {
-                    index++;
-                    loadTrack(index);
-                    if (playing) {
-                        audio.play();
-                    }
-                } else {
-                    audio.pause();
-                    index = 0;
-                    loadTrack(index);
-                }
-            }),
-            li = $('#plList li').on('click', function () {
-                var id = parseInt($(this).index());
-                if (id !== index) {
-                    playTrack(id);
-                }
-            }),
-            loadTrack = function (id) {
-                $('.plSel').removeClass('plSel');
-                $('#plList li:eq(' + id + ')').addClass('plSel');
-                npTitle.text(tracks[id].name);
-                index = id;
-                audio.src = mediaPath + tracks[id].file + extension;
-                updateDownload(id, audio.src);
-            },
-            updateDownload = function (id, source) {
-                player.on('loadedmetadata', function () {
-                    $('a[data-plyr="download"]').attr('href', source);
-                });
-            },
-            playTrack = function (id) {
-                loadTrack(id);
-                audio.play();
-            };
-        extension = audio.canPlayType('audio/mpeg') ? '.mp3' : audio.canPlayType('audio/ogg') ? '.ogg' : '';
-        loadTrack(index);
-    } else {
-        // no audio support
-        $('.column').addClass('hidden');
-        var noSupport = $('#audio1').text();
-        $('.container').append('<p class="no-support">' + noSupport + '</p>');
+
+        let currentIndex = 0
+        let status = "pause"
+
+        const audioData = [
+            "colgate_commercial_indonesia",
+            "GBP_E-Learning_indonesia",
+            "Google_Commercial_Indonesia",
+            "Mastercard_Narration_Indonesia",
+            "SUN_Energy_Narration_Indonesia",
+            "Youtube_Commercial_Indonesia"
+        ]
+
+        let audio = new Audio(`./audios/${audioData[currentIndex]}.mp3`)
+        const playButton = document.getElementById("play-audio")
+        playButton.onclick = () => {
+            if(status === "pause"){
+                audio.play()
+                playButton.children == "pause"
+                status = "play"
+            }else {
+                audio.pause()
+                playButton.children == "play"
+                status = "pause"
+            }
+        }
+
+        const nextButton = document.getElementById("btnNext")
+        const prevButton = document.getElementById("btnNext")
+        nextButton.onclick = () => {
+            if (currentIndex + 1 >= audioData.length) {
+                audio.pause()
+                currentIndex += 1
+                audio = new Audio(`./audios/${audioData[currentIndex]}.mp3`)
+                audio.play()
+            } else {
+                audio.pause()
+                currentIndex = 0
+                audio = new Audio(`./audios/${audioData[0]}.mp3`)
+                audio.play()
+            }
+        }
+        prevButton.onclick = () => {
+            if (currentIndex > 0) {
+                audio.pause()
+                currentIndex -= 1
+                audio = new Audio(`./audios/${audioData[currentIndex]}.mp3`)
+                audio.play()
+            }
+        }
+
     }
+
+    // var supportsAudio = !!document.createElement('audio').canPlayType;
+    // if (supportsAudio) {
+    //     // initialize plyr
+    //     var player = new Plyr('#audio1', {
+    //         controls: [
+    //             'restart',
+    //             'play',
+    //             'progress',
+    //             'current-time',
+    //             'duration',
+    //             'mute',
+    //             'volume',
+    //             'download'
+    //         ]
+    //     });
+    //     // initialize playlist and controls
+    //     var index = 0,
+    //         playing = false,
+    //         mediaPath = '../audios/',
+    //         extension = '',
+    //         tracks = [{
+    //             "track": 1,
+    //             "name": "Commercial Colgate Indonesia",
+    //             "duration": "0:08",
+    //             "file": "Colgate Commercial Indonesia"
+    //         }, {
+    //             "track": 2,
+    //             "name": "E-Learning GBP Indonesia",
+    //             "duration": "0:20",
+    //             "file": "GBP E-Learning Indonesia"
+    //         }, {
+    //             "track": 3,
+    //             "name": "Commercial Google Indonesia",
+    //             "duration": "0:31",
+    //             "file": "Google Commercial Indonesia"
+    //         }, {
+    //             "track": 4,
+    //             "name": "Narration Mastercard Indonesia",
+    //             "duration": "1:03",
+    //             "file": "Mastercard Narration Indonesia"
+    //         }, {
+    //             "track": 5,
+    //             "name": "Narration SUN Energy Indonesia",
+    //             "duration": "0:53",
+    //             "file": "SUN Energy Narration Indonesia"
+    //         }, {
+    //             "track": 6,
+    //             "name": "Commercial Youtube Indonesia",
+    //             "duration": "0:21",
+    //             "file": "Youtube Commercial Indonesia"
+    //         }],
+    //         buildPlaylist = $.each(tracks, function(key, value) {
+    //             var trackNumber = value.track,
+    //                 trackName = value.name,
+    //                 trackDuration = value.duration;
+    //             if (trackNumber.toString().length === 1) {
+    //                 trackNumber = '0' + trackNumber;
+    //             }
+    //             $('#plList').append('<li> \
+    //                 <div class="plItem"> \
+    //                     <span class="plNum">' + trackNumber + '.</span> \
+    //                     <span class="plTitle">' + trackName + '</span> \
+    //                     <span class="plLength">' + trackDuration + '</span> \
+    //                 </div> \
+    //             </li>');
+    //         }),
+    //         trackCount = tracks.length,
+    //         npAction = $('#npAction'),
+    //         npTitle = $('#npTitle'),
+    //         audio = $('#audio1').on('play', function () {
+    //             playing = true;
+    //             npAction.text('Now Playing...');
+    //         }).on('pause', function () {
+    //             playing = false;
+    //             npAction.text('Paused...');
+    //         }).on('ended', function () {
+    //             npAction.text('Paused...');
+    //             if ((index + 1) < trackCount) {
+    //                 index++;
+    //                 loadTrack(index);
+    //                 audio.play();
+    //             } else {
+    //                 audio.pause();
+    //                 index = 0;
+    //                 loadTrack(index);
+    //             }
+    //         }).get(0),
+    //         btnPrev = $('#btnPrev').on('click', function () {
+    //             if ((index - 1) > -1) {
+    //                 index--;
+    //                 loadTrack(index);
+    //                 if (playing) {
+    //                     audio.play();
+    //                 }
+    //             } else {
+    //                 audio.pause();
+    //                 index = 0;
+    //                 loadTrack(index);
+    //             }
+    //         }),
+    //         btnNext = $('#btnNext').on('click', function () {
+    //             if ((index + 1) < trackCount) {
+    //                 index++;
+    //                 loadTrack(index);
+    //                 if (playing) {
+    //                     audio.play();
+    //                 }
+    //             } else {
+    //                 audio.pause();
+    //                 index = 0;
+    //                 loadTrack(index);
+    //             }
+    //         }),
+    //         li = $('#plList li').on('click', function () {
+    //             var id = parseInt($(this).index());
+    //             if (id !== index) {
+    //                 playTrack(id);
+    //             }
+    //         }),
+    //         loadTrack = function (id) {
+    //             $('.plSel').removeClass('plSel');
+    //             $('#plList li:eq(' + id + ')').addClass('plSel');
+    //             npTitle.text(tracks[id].name);
+    //             index = id;
+    //             audio.src = mediaPath + tracks[id].file + extension;
+    //             updateDownload(id, audio.src);
+    //         },
+    //         updateDownload = function (id, source) {
+    //             player.on('loadedmetadata', function () {
+    //                 $('a[data-plyr="download"]').attr('href', source);
+    //             });
+    //         },
+    //         playTrack = function (id) {
+    //             loadTrack(id);
+    //             audio.play();
+    //         };
+    //     extension = audio.canPlayType('audio/mpeg') ? '.mp3' : audio.canPlayType('audio/ogg') ? '.ogg' : '';
+    //     loadTrack(index);
+    // } else {
+    //     // no audio support
+    //     $('.column').addClass('hidden');
+    //     var noSupport = $('#audio1').text();
+    //     $('.container').append('<p class="no-support">' + noSupport + '</p>');
+    // }
 });
